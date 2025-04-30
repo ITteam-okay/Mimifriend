@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Твоё настроение</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">MimiFriend</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" onclick="playClick()">Главная</a></li>
+                <li><a href="mood.html" onclick="playClick()">Настроение</a></li>
+                <li><a href="cards.html" onclick="playClick()">Советы</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="mood-section fade-in">
+        <h1>Как ты себя сегодня чувствуешь?</h1>
+        <div class="mood-options">
+            <div class="mood-card" onclick="showMood('happy')"> <img
+                    src="https://cdn-icons-png.flaticon.com/512/742/742751.png" alt="Радость">
+                <p>Радостно</p>
+            </div>
+            <div class="mood-card" onclick="showMood('sad')"> <img
+                    src="https://cdn-icons-png.flaticon.com/512/742/742760.png" alt="Грусть">
+                <p>Грустно</p>
+            </div>
+            <div class="mood-card" onclick="showMood('tired')"> <img
+                    src="https://cdn-icons-png.flaticon.com/512/742/742773.png" alt="Усталость">
+                <p>Устала</p>
+            </div>
+            <div class="mood-card" onclick="showMood('angry')"> <img
+                    src="https://cdn-icons-png.flaticon.com/512/742/742774.png" alt="Злость">
+                <p>Злюсь</p>
+            </div>
+            <div class="mood-card" onclick="showMood('motivated')"> <img
+                    src="https://cdn-icons-png.flaticon.com/512/742/742775.png" alt="Мотивация">
+                <p>Мотивирована</p>
+            </div>
+        </div>
+        <div id="mood-response" class="mood-response hidden fade-in"> <img id="mood-img" src="" alt="настроение" />
+            <p id="mood-text"></p>
+        </div>
+    </section>
+    <footer>
+        <p>Связь: @team_girls | Instagram: @добродушка</p> <a href="index.html" class="back-btn">← На главную</a>
+    </footer>
+    <audio id="ding-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_a4fa3cb3e2.mp3"></audio> <audio
+        id="water-sound" src="https://cdn.pixabay.com/audio/2023/03/27/audio_9e6d5057f2.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

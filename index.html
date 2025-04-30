@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Цифровой помощник</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body> 
+    <header>
+        <div class="logo">MimiFriend</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" onclick="playClick()">Главная</a></li>
+                <li><a href="mood.html" onclick="playClick()">Настроение</a></li>
+                <li><a href="cards.html" onclick="playClick()">Советы</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div>
+            <h1>Привет! Я твой цифровой друг</h1>
+            <h2>Я подниму тебе настроение и помогу отдохнуть</h2>
+            
+            <button onclick="window.location.href='mood.html'">Старт!</button>
+            
+
+        </div>
+    </section>
+    <section class="about">
+        <h2>О команде</h2>
+        <div class="team">
+            <div class="team-member"> <img src="https://avatars.mds.yandex.net/i?id=b88659cb5ced6595e1fb0797bd4bf16ac583160c-9269077-images-thumbs&ref=rim&n=33&w=225&h=225" alt="Девочка 1">
+                <p>Арайлым — кодер номер 1</p>
+            </div>
+            <div class="team-member"> <img src="https://img.joomcdn.net/10fbacecb40406a4a04a42eac37914863362867e_original.jpeg" alt="Девочка 2">
+                <p>Наргиз — кодер номер 2</p>
+            </div>
+        </div>
+    </section>
+    <section class="support">
+        <h2>Напиши нам отзыв</h2>
+        <form id="feedbackForm">
+          <input type="text" id="name" placeholder="Твое имя" required />
+          <textarea id="message" rows="4" placeholder="Сообщение..." required></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+        <p id="feedbackStatus" style="margin-top: 10px; color: green;"></p>
+      </section>
+      
+    <footer>
+        <p>Свяжись с нами: @arai_girl, @nargiz_code</p>
+        <p>Instagram: <a href="https://instagram.com/example" target="_blank"
+                style="color: #FFD700;">@mimifriend_team</a></p>
+    </footer>
+    <script>
+        const TOKEN = '8023769916:AAHVRKwNbATX3Wsme4ysc5h1ZHYrWaeM4Qw';
+        const CHAT_ID = '1981538767';  
+      
+        document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+      
+          const name = document.getElementById('name').value.trim();
+          const message = document.getElementById('message').value.trim();
+      
+          if (!name || !message) return;
+      
+          const text = `📝 Новый отзыв:\n👤 Имя: ${name}\n💬 Сообщение: ${message}`;
+      
+          fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: CHAT_ID,
+              text: text
+            })
+          })
+          .then(response => {
+            if (response.ok) {
+              document.getElementById('feedbackStatus').textContent = 'Спасибо за отзыв!';
+              document.getElementById('feedbackForm').reset();
+            } else {
+              document.getElementById('feedbackStatus').textContent = 'Ошибка при отправке 😢';
+            }
+          })
+          .catch(error => {
+            document.getElementById('feedbackStatus').textContent = 'Ошибка сети 😢';
+          });
+        });
+      </script>
+      
+</body>
+
+</html>
